@@ -12,6 +12,13 @@ const Home = () => {
   const { animales, error } = useFetchAnimales();
   const renderItem = ({ item }) => <AnimalCard animal={item} />;
 
+  //Listas con cada tipo de animal
+  const perros = animales.filter((animal) => animal.tipo === "Perro");
+  const gatos = animales.filter((animal) => animal.tipo === "Gato");
+  const conejos = animales.filter((animal) => animal.tipo === "Conejo");
+  const roedor = animales.filter((animal) => animal.tipo === "Roedor");
+  const aves = animales.filter((animal) => animal.tipo === "Ave");
+
   return (
     <ImageBackground source={image} resizeMode="cover" style={styles.background}>
       <Text style={styles.title}>Animalitos</Text>
