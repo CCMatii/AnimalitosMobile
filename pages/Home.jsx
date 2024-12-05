@@ -28,6 +28,8 @@ const Home = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.scrollContainer}
+        horizontal={true} 
+        
       />
     </ImageBackground>
   );
