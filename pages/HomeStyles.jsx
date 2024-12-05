@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
   },
-  titlepicker:{
+  titlecarousel:{
     fontSize: 16,
     fontWeight: "bold",
     textAlign:"center",

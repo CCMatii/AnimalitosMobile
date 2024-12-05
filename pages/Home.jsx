@@ -21,7 +21,7 @@ const Home = () => {
     "Atacama",
     "Coquimbo",
     "Valparaíso",
-    "Metropolitana de Santiago",
+    "RM",
     "O'Higgins",
     "Maule",
     "Ñuble",
@@ -33,16 +33,25 @@ const Home = () => {
     "Magallanes y Antártica Chilena",
   ];
 
-  // Listas con cada tipo de animal
-  const perros = animales.filter((animal) => animal.tipo === "Perro");
-  const gatos = animales.filter((animal) => animal.tipo === "Gato");
-  const conejos = animales.filter((animal) => animal.tipo === "Conejo");
-  const roedores = animales.filter((animal) => animal.tipo === "Roedor");
-  const aves = animales.filter((animal) => animal.tipo === "Ave");
+  const regionFilter = (animales, region) => {
+    if (region === "Todas las regiones") {
+      return animales;
+    }
+    return animales.filter((animal) => animal.region === region);
+  };
+
+  // Listas de animales
+  const animalesFiltered = regionFilter(animales, selectedRegion);
+  const perros = animalesFiltered.filter((animal) => animal.tipo === "Perro");
+  const gatos = animalesFiltered.filter((animal) => animal.tipo === "Gato");
+  const conejos = animalesFiltered.filter((animal) => animal.tipo === "Conejo");
+  const roedores = animalesFiltered.filter((animal) => animal.tipo === "Roedor");
+  const aves = animalesFiltered.filter((animal) => animal.tipo === "Ave");
+
 
   const renderAnimalList = (data, title) => (
     <View style={{ marginVertical: 10 }}>
-      <Text style={styles.subTitle}>{title}</Text>
+      <Text style={styles.titlecarousel}>{title}</Text>
       <FlatList
         data={data}
         renderItem={({ item }) => <AnimalCard animal={item} />}
@@ -58,6 +67,7 @@ const Home = () => {
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
         <Text style={styles.title}>Animalitos</Text>
         {error && <Text style={styles.error}>{error}</Text>}
+        <Text style={{fontWeight:"bold", marginLeft:10}}>Filtrar por region:</Text>
         <Picker
           selectedValue={selectedRegion}
           onValueChange={(itemValue) => setSelectedRegion(itemValue)}
@@ -67,8 +77,7 @@ const Home = () => {
             <Picker.Item key={region} label={region} value={region} />
           ))}
         </Picker>
-        <Text style={styles.titlepicker}>Todos los animales</Text>
-        {renderAnimalList(animales, "Todos los animales")}
+        {renderAnimalList(animalesFiltered, "Todos los animales")}
         {renderAnimalList(perros, "Perros")}
         {renderAnimalList(gatos, "Gatos")}
         {renderAnimalList(conejos, "Conejos")}
