@@ -18,6 +18,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
   },
+  titlepicker:{
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign:"center",
+    marginVertical:20,
+  },
 });
 
 export default styles;
